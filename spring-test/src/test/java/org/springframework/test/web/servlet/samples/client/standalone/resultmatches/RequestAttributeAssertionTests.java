@@ -43,7 +43,7 @@ public class RequestAttributeAssertionTests {
 
 	private final WebTestClient mainServletClient =
 			MockMvcWebTestClient.bindToController(new SimpleController())
-					.defaultRequest(get("/").servletPath("/main"))
+					.defaultRequest(get("/").servletPath("/com/zxh/config"))
 					.build();
 
 	private final WebTestClient client =
@@ -52,7 +52,7 @@ public class RequestAttributeAssertionTests {
 
 	@Test
 	void requestAttributeEqualTo() throws Exception {
-		performRequest(mainServletClient, "/main/1")
+		performRequest(mainServletClient, "/com/zxh/config/1")
 			.andExpect(request().attribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE, "/{id}"))
 			.andExpect(request().attribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE, "/1"));
 	}
@@ -65,7 +65,7 @@ public class RequestAttributeAssertionTests {
 			.andExpect(request().attribute(producibleMediaTypes, hasItem(MediaType.APPLICATION_JSON)))
 			.andExpect(request().attribute(producibleMediaTypes, not(hasItem(MediaType.APPLICATION_XML))));
 
-		performRequest(mainServletClient, "/main/1")
+		performRequest(mainServletClient, "/com/zxh/config/1")
 			.andExpect(request().attribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE, equalTo("/{id}")))
 			.andExpect(request().attribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE, equalTo("/1")));
 	}

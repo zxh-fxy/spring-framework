@@ -132,12 +132,12 @@ class MockHttpServletRequestBuilderTests {
 	void contextPathServletPath() {
 		this.builder = new MockHttpServletRequestBuilder(HttpMethod.GET, "/travel/main/hotels/42");
 		this.builder.contextPath("/travel");
-		this.builder.servletPath("/main");
+		this.builder.servletPath("/com/zxh/config");
 
 		MockHttpServletRequest request = this.builder.buildRequest(this.servletContext);
 
 		assertThat(request.getContextPath()).isEqualTo("/travel");
-		assertThat(request.getServletPath()).isEqualTo("/main");
+		assertThat(request.getServletPath()).isEqualTo("/com/zxh/config");
 		assertThat(request.getPathInfo()).isEqualTo("/hotels/42");
 	}
 
